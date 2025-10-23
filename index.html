@@ -1,0 +1,57 @@
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>视界人才 — AI招聘视频分析 Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>视界人才 · AI招聘视频分析 Demo</h1>
+      <p class="subtitle">模拟上传岗位描述与候选人视频 → AI分析 → 输出可视化报告</p>
+    </header>
+
+    <main class="grid">
+      <section class="card input-card">
+        <h2>1. 输入信息</h2>
+        <label>岗位描述（JD）</label>
+        <textarea id="jd" rows="5" placeholder="例如：产品经理，要求：跨部门协作、逻辑思维强、沟通表达流畅"></textarea>
+
+        <label>候选人视频（演示用）</label>
+        <input id="videoFile" type="file" accept="video/*" />
+
+        <div class="actions">
+          <button id="startBtn">开始分析</button>
+        </div>
+      </section>
+
+      <section class="card processing-card" id="processing" aria-hidden="true">
+        <h2>2. AI 分析中...</h2>
+        <div class="progress-bar"><div id="progress" class="progress-fill" style="width:0%"></div></div>
+        <p id="progressText">等待中</p>
+      </section>
+
+      <section class="card result-card" id="result" aria-hidden="true">
+        <h2>3. 分析结果</h2>
+        <div class="metrics">
+          <div class="metric"><div class="label">技能匹配度</div><div class="value" id="skill">-</div></div>
+          <div class="metric"><div class="label">软实力</div><div class="value" id="soft">-</div></div>
+          <div class="metric"><div class="label">文化契合度</div><div class="value" id="culture">-</div></div>
+        </div>
+        <div class="score">综合匹配分：<span id="score">-</span></div>
+        <div class="advice" id="advice"></div>
+        <button id="resetBtn" class="secondary">重置</button>
+      </section>
+    </main>
+
+    <footer>
+      <small>注意：本Demo为交互演示，分析结果为模拟生成，仅用于路演展示。</small>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
