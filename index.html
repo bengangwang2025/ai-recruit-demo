@@ -1,57 +1,69 @@
-
 <!doctype html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>视界人才 — AI招聘视频分析 Demo</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+
+<body onload="onload()">
   <div class="container">
     <header>
       <h1>视界人才 · AI招聘视频分析 Demo</h1>
-      <p class="subtitle">模拟上传岗位描述与候选人视频 → AI分析 → 输出可视化报告</p>
+      <p class="subtitle">上传岗位描述与候选人视频 → AI分析 → 输出可视化报告</p>
     </header>
 
     <main class="grid">
       <section class="card input-card">
-        <h2>1. 输入信息</h2>
-        <label>岗位描述（JD）</label>
-        <textarea id="jd" rows="5" placeholder="例如：产品经理，要求：跨部门协作、逻辑思维强、沟通表达流畅"></textarea>
 
-        <label>候选人视频（演示用）</label>
-        <input id="videoFile" type="file" accept="video/*" />
 
+        <label
+          id="jd">我们寻找的不仅是一位培训专家，更是一位团队能量的点燃者。我们相信，最卓越的学习发生在平等、互动目充满活力的氛围中。因此，我们期待您能运用深厚的专业功底与引人入胜的传授技巧，将知识转化为团队的共同语言与行动力，在塑造人才的同时，也成为我们组织文化的诠释者和传递者。</label>
+        <br></br>
+        <div class="video-upload-section">
+          <label>候选人视频（可选择多个视频）</label>
+          <input id="videoFile" type="file" accept="video/*" multiple />
+          <div id="selectedFiles" class="selected-files">
+            <!-- 已选择的文件将在这里显示 -->
+          </div>
+        </div>
         <div class="actions">
           <button id="startBtn">开始分析</button>
         </div>
       </section>
 
       <section class="card processing-card" id="processing" aria-hidden="true">
-        <h2>2. AI 分析中...</h2>
-        <div class="progress-bar"><div id="progress" class="progress-fill" style="width:0%"></div></div>
-        <p id="progressText">等待中</p>
+        <h2>AI 分析中...</h2>
+        <div class="progress-container">
+          <div class="current-file">正在分析: <span id="currentFileName">-</span></div>
+          <div class="progress-bar">
+            <div id="progress" class="progress-fill" style="width:0%"></div>
+          </div>
+          <p id="progressText">等待中</p>
+          <div id="overall-progress">总体进度：<span id="fileProgress">0/0</span></div>
+        </div>
       </section>
 
-      <section class="card result-card" id="result" aria-hidden="true">
-        <h2>3. 分析结果</h2>
-        <div class="metrics">
-          <div class="metric"><div class="label">技能匹配度</div><div class="value" id="skill">-</div></div>
-          <div class="metric"><div class="label">软实力</div><div class="value" id="soft">-</div></div>
-          <div class="metric"><div class="label">文化契合度</div><div class="value" id="culture">-</div></div>
+      <section class="card results-section" id="results" aria-hidden="true">
+        <h2>分析结果</h2>
+        <div id="resultsContainer" class="results-container">
+          <!-- 分析结果将在这里动态生成 -->
         </div>
-        <div class="score">综合匹配分：<span id="score">-</span></div>
-        <div class="advice" id="advice"></div>
-        <button id="resetBtn" class="secondary">重置</button>
+        <div class="results-actions">
+          <button id="resetBtn" class="secondary">重置</button>
+          <button id="exportBtn" class="primary">导出报告</button>
+        </div>
       </section>
     </main>
 
     <footer>
-      <small>注意：本Demo为交互演示，分析结果为模拟生成，仅用于路演展示。</small>
+      <small>注意：本Demo为交互演示，分析结果为模拟生成。</small>
     </footer>
   </div>
 
   <script src="app.js"></script>
 </body>
+
 </html>
